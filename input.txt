@@ -1,0 +1,5 @@
+var;
+var:tipo;
+var,var(1:2:3):tipo;
+var;var:tipo;var,var(1:2:3):tipo;
+var+var;

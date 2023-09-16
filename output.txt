@@ -1,0 +1,5 @@
+[Declaración de variables] var;
+[Declaración de variables] var:tipo;
+[Declaración de variables] var,var(1:2:3):tipo;
+[Declaración de variables] var;var:tipo;var,var(1:2:3):tipo;
+[Desconocido] var+var;
