@@ -474,9 +474,11 @@ char *yytext;
 #line 1 "LAB01.l"
 /** Definitions */
 #line 3 "LAB01.l"
-#line 478 "LAB01.yy.c"
-/** Rules: pattern  action */
+    int total_declarations = 0;
+    int total_errors = 0;
 #line 480 "LAB01.yy.c"
+/** Rules: pattern  action */
+#line 482 "LAB01.yy.c"
 
 #define INITIAL 0
 
@@ -693,9 +695,9 @@ YY_DECL
 		}
 
 	{
-#line 22 "LAB01.l"
+#line 24 "LAB01.l"
 
-#line 699 "LAB01.yy.c"
+#line 701 "LAB01.yy.c"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -754,26 +756,32 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 23 "LAB01.l"
-printf( "[Declaración de variables] %s\n", yytext);
+#line 25 "LAB01.l"
+{
+    printf( "[Declaración de variables] %s\n", yytext);
+    total_declarations++;
+} 
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 24 "LAB01.l"
+#line 29 "LAB01.l"
 /* whitesp */
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 25 "LAB01.l"
-printf("[Desconocido] %s\n", yytext);
+#line 30 "LAB01.l"
+{
+    printf("[Desconocido] %s\n", yytext);
+    total_errors++;
+}
 	YY_BREAK
 case 4:
 YY_RULE_SETUP
-#line 26 "LAB01.l"
+#line 34 "LAB01.l"
 ECHO;
 	YY_BREAK
-#line 777 "LAB01.yy.c"
+#line 785 "LAB01.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1778,7 +1786,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 26 "LAB01.l"
+#line 34 "LAB01.l"
 
 
 /** User code section */
@@ -1792,4 +1800,7 @@ int main( int argc, char **argv )
     else
         yyin = stdin;
     yylex();
+    printf("Total declarations = %d\n", total_declarations);
+    printf("Total erros = %d\n", total_errors);
+
 }

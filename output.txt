@@ -3,3 +3,6 @@
 [Declaración de variables] var,var(1:2:3):tipo;
 [Declaración de variables] var;var:tipo;var,var(1:2:3):tipo;
 [Desconocido] var+var;
+[Desconocido] var(1;2)
+Total declarations = 4
+Total erros = 2

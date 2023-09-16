@@ -1,5 +1,7 @@
 /** Definitions */
 %{
+    int total_declarations = 0;
+    int total_errors = 0;
 %}
 
 LETTER [a-zA-Z]
@@ -20,9 +22,15 @@ FULL_DEC ({TYPE_DEC}";")+
 
 /** Rules: pattern  action */
 %%
-{FULL_DEC} printf( "[Declaración de variables] %s\n", yytext);
+{FULL_DEC} {
+    printf( "[Declaración de variables] %s\n", yytext);
+    total_declarations++;
+} 
 [ \t\n]+ /* whitesp */
-.* printf("[Desconocido] %s\n", yytext);
+.* {
+    printf("[Desconocido] %s\n", yytext);
+    total_errors++;
+}
 %%
 
 /** User code section */
@@ -36,4 +44,7 @@ int main( int argc, char **argv )
     else
         yyin = stdin;
     yylex();
+    printf("Total declarations = %d\n", total_declarations);
+    printf("Total errors = %d\n", total_errors);
+
 }
